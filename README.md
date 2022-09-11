@@ -1,4 +1,4 @@
-# -MISW4201-202214-Grupo07
+# MISW4201-202214-Grupo07
 Arquitecturas ágiles de software
 
 ## Alistamiento
