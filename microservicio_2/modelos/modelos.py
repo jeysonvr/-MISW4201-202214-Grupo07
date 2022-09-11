@@ -4,7 +4,7 @@ from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
 db = SQLAlchemy()
 
-// Información de los mensajes procesados
+# Información de los mensajes procesados
 class LogProcesados(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_send = db.Column(db.String(128))
