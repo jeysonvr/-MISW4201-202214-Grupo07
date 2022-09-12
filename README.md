@@ -6,7 +6,13 @@ Arquitecturas ágiles de software
 - Subir el virtual environment de python e instalar los requirements.
 - Crear variable de entorno:
 
+Para macOS/Linux
+
 export AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;AccountName=experiment092022;AccountKey=bXSjb/KxRpXyKu0d9xW9KMqP0YrZpJvcgiQXMUDq9PIkbJJ/y1lg2N5F9qAAkEaeLl39Ri+BQ0WK+AStTp1apw==;EndpointSuffix=core.windows.net"
+
+Windows
+
+setx AZURE_STORAGE_CONNECTION_STRING "DefaultEndpointsProtocol=https;AccountName=experiment092022;AccountKey=bXSjb/KxRpXyKu0d9xW9KMqP0YrZpJvcgiQXMUDq9PIkbJJ/y1lg2N5F9qAAkEaeLl39Ri+BQ0WK+AStTp1apw==;EndpointSuffix=core.windows.net"
 
 Nota: Por cada microservicio a ejecutar se debe realizar el alistamiento en terminales diferentes.
 
