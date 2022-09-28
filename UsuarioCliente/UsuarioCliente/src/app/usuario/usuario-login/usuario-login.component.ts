@@ -27,10 +27,21 @@ export class UsuarioLoginComponent implements OnInit {
     this.usuarioService.userLogIn(usuario, contrasena)
       .subscribe(res => {
         const decodedToken = this.helper.decodeToken(res.token);   
-        
+        alert('El usuario realizo la consulta satisfactoriamente')     
       },
         error => {
-          alert('No existe el usuario')
+          console.log(error);
+          switch (error.status) {
+            case 404:
+              alert('No existe el usuario')
+              break;
+            case 401:
+              alert('El usuario no esta autorizado')
+              break;
+            default:
+              alert('Error')
+              break;
+          }          
         })
   } 
 }
