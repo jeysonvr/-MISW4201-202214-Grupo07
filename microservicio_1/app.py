@@ -34,9 +34,8 @@ queue_client = QueueClient.from_connection_string(connect_str, q_name)
 # Insert Message
 message = u"Alarm message"
 print("Adding message: " + message)
-blockNumber = 3
-mensaje_enviado = queue_client.send_message(message)
-for index in range(1,10000):
+blockNumber = 4
+for index in range(1,50):
     mensaje_enviado = queue_client.send_message(message + str(index))
     mensaje_log = LogEnviados(date_send = datetime.datetime.now(),message_id = mensaje_enviado.id,message_content = mensaje_enviado.content, is_processed = False, block_number = blockNumber)
     db.session.add(mensaje_log)

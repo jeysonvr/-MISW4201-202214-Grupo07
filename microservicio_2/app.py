@@ -36,8 +36,7 @@ queue_client = QueueClient.from_connection_string(connect_str, q_name)
 properties = queue_client.get_queue_properties()
 count = properties.approximate_message_count
 print("Message init count: " + str(count))
-blockNumber = 3
-cont = 0
+blockNumber = 4
 while True:
     messages = queue_client.receive_messages()
     for message in messages:
