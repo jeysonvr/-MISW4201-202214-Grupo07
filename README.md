@@ -30,3 +30,8 @@ Comando `ng build` para construir (build) el proyecto. El build del proyecto que
 Moverse a la carpeta `Microservicios` con el comando `cd Microservicios` <br>
 Iniciar con `flask run`
  > **_NOTA:_** Validar que el front-end apunte a la url local en la que corren los microservicio (ej: localhost:5000).
+
+
+## Notas
+
+* URL presentación del experimento: [https://uniandes-my.sharepoint.com/:p:/g/personal/z_rey_uniandes_edu_co/EW8ymq-6bWdPjvQb0eizYP8BnqWEPtnoRmU_BJdtkEDJHg?e=mWpk1w](https://uniandes-my.sharepoint.com/:p:/g/personal/z_rey_uniandes_edu_co/EW8ymq-6bWdPjvQb0eizYP8BnqWEPtnoRmU_BJdtkEDJHg?e=mWpk1w)
