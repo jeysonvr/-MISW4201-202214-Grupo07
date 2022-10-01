@@ -1,6 +1,6 @@
 import logging, datetime
 from flask import request
-from flask_jwt_extended import jwt_required, create_access_token
+from flask_jwt_extended import jwt_required, create_access_token, decode_token
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 
@@ -40,18 +40,20 @@ class VistaAutorizador:
             db.session.commit()
             return {"mensaje": "Inicio de sesión exitoso", "token": token_de_acceso}
 
-    def autorizarUsuario(usuario):
-        nuevo_log = LogMicroServicios(fecha = datetime.datetime.now(), mensaje = "Se recibe petición de autorización para usuario: " + usuario, microservicio = "Autorizador")
+    def autorizarUsuario(token):
+        decodedToken = decode_token(token)
+        idUsuario = decodedToken["sub"]
+        usuario = Usuario.query.filter(Usuario.id == idUsuario).first()
+        usuarioJson =  usuario_schema.dump(usuario)
+        nuevo_log = LogMicroServicios(fecha = datetime.datetime.now(), mensaje = "Se recibe petición de autorización para usuario: " + usuarioJson["usuario"], microservicio = "Autorizador")
         db.session.add(nuevo_log)
-        user = Usuario.query.filter(Usuario.usuario == usuario).first()
-        usuarioJson =  usuario_schema.dump(user)
-        if(usuarioJson['rol'] == "admin"):
-            nuevo_log = LogMicroServicios(fecha = datetime.datetime.now(), mensaje = "Usuario " + usuario + " tiene permisos de admin", microservicio = "Autorizador")
+        if(usuarioJson['rol'] == "user"):
+            nuevo_log = LogMicroServicios(fecha = datetime.datetime.now(), mensaje = "Usuario " + usuarioJson["usuario"] + " tiene permisos de admin", microservicio = "Autorizador")
             db.session.add(nuevo_log)
             db.session.commit()
             return 200
         else:
-            nuevo_log = LogMicroServicios(fecha = datetime.datetime.now(), mensaje = "Usuario " + usuario + " no tiene permisos de admin", microservicio = "Autorizador")
+            nuevo_log = LogMicroServicios(fecha = datetime.datetime.now(), mensaje = "Usuario " + usuarioJson["usuario"] + " no tiene permisos de admin", microservicio = "Autorizador")
             db.session.add(nuevo_log)
             db.session.commit()
             return 401

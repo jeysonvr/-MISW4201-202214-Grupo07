@@ -30,7 +30,7 @@ class VistaLogIn(Resource):
         if (autenticacion == 404):
             db.session.commit()
             return "El usuario no existe", autenticacion
-        autorizador = VistaAutorizador.autorizarUsuario(request.json["usuario"]) # Cambiar metodo para que reciba el token y se valide
+        autorizador = VistaAutorizador.autorizarUsuario(autenticacion["token"]) # Cambiar metodo para que reciba el token y se valide
         if (autorizador == 200):
             VistaGestionInformacion.getUsuario(request.json["usuario"],request.json["contrasena"])
         return "Acceso permitido" , autorizador        
